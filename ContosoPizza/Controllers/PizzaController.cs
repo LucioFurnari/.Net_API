@@ -36,6 +36,12 @@ public class PizzaController: ControllerBase {
       return BadRequest();
 
     var existingPizza = PizzaService.Get(id);
+    if (existingPizza is null)
+      return NotFound();
+
+    PizzaService.Update(pizza);
+
+    return NoContent();
   }
 
   [HttpDelete("{id}")]
